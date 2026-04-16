@@ -1832,6 +1832,292 @@
     background: rgba(79,142,247,0.06);
   }
 
+  /* ---- VISUAL PANELS ---- */
+  .vis-panel { animation: fadeUp 0.4s ease both; }
+
+  .vis-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+
+  /* VIS 1 - Market stats row */
+  .vis-market-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .vis-market-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 12px;
+    text-align: center;
+  }
+
+  .vis-market-label { font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+  .vis-market-val { font-family: 'Bricolage Grotesque', sans-serif; font-size: 20px; font-weight: 800; color: var(--text); }
+  .vis-market-sub { font-size: 10px; color: var(--text-dim); margin-top: 2px; }
+
+  /* VIS 2 - Strategy chat + channels */
+  .vis-chat-bubble {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-bottom: 18px;
+  }
+
+  .vis-chat-av {
+    width: 30px; height: 30px;
+    border-radius: 9px;
+    background: linear-gradient(135deg, var(--accent2), var(--accent));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 11px; font-weight: 800; color: #fff;
+    flex-shrink: 0;
+  }
+
+  .vis-chat-text {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px 10px 10px 3px;
+    padding: 10px 13px;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .vis-strategy-channels { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+
+  .vis-channel {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+
+  .vis-channel-icon {
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .vis-channel-body { flex: 1; }
+  .vis-channel-name { font-size: 12.5px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+  .vis-channel-desc { font-size: 11px; color: var(--text-dim); line-height: 1.4; }
+
+  .vis-channel-badge {
+    font-size: 10px; font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  .vis-action-row { display: flex; gap: 8px; }
+
+  .vis-action-btn {
+    font-size: 12px; font-weight: 600;
+    padding: 9px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid var(--border2);
+    color: var(--text-muted);
+    transition: all 0.2s;
+  }
+
+  .vis-action-primary {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    box-shadow: 0 4px 14px rgba(79,142,247,0.3);
+  }
+
+  /* VIS 3 - Radar */
+  .vis-radar-wrap {
+    display: flex;
+    justify-content: center;
+    margin: 8px 0 16px;
+  }
+
+  .vis-radar {
+    position: relative;
+    width: 160px; height: 160px;
+  }
+
+  .vis-radar-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(79,142,247,0.2);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .vis-radar-ring.r1 { width: 160px; height: 160px; }
+  .vis-radar-ring.r2 { width: 110px; height: 110px; border-color: rgba(79,142,247,0.3); }
+  .vis-radar-ring.r3 { width: 60px; height: 60px; border-color: rgba(79,142,247,0.4); }
+
+  .vis-radar-sweep {
+    position: absolute;
+    width: 80px; height: 80px;
+    top: 50%; left: 50%;
+    transform-origin: 0% 0%;
+    background: conic-gradient(from 0deg, transparent 0deg, rgba(79,142,247,0.15) 60deg, transparent 60deg);
+    animation: radarSweep 3s linear infinite;
+    border-radius: 0 100% 0 0;
+  }
+
+  @keyframes radarSweep {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  .vis-radar-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, var(--accent2), var(--accent));
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 9px; font-weight: 800; color: #fff;
+    z-index: 2;
+  }
+
+  .vis-radar-dot {
+    position: absolute;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 6px var(--accent);
+    animation: dotPulse 2s ease-in-out infinite;
+  }
+
+  .vis-dot-hot { background: var(--accent3); box-shadow: 0 0 8px var(--accent3); animation-delay: 0.3s; }
+  .vis-dot-med { background: #FF9B3E; box-shadow: 0 0 6px #FF9B3E; animation-delay: 0.6s; }
+
+  @keyframes dotPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.4); }
+  }
+
+  .vis-signal-list { display: flex; flex-direction: column; gap: 8px; }
+
+  .vis-signal-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 12.5px;
+  }
+
+  .vis-signal-new { border-color: rgba(0,212,170,0.25); background: rgba(0,212,170,0.04); }
+
+  .vis-sig-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .vis-sig-text { flex: 1; color: var(--text-muted); }
+  .vis-sig-text strong { color: var(--text); }
+  .vis-sig-time { font-size: 10px; color: var(--text-dim); }
+
+  /* VIS 4 - Sequence */
+  .vis-seq-contact {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 16px;
+  }
+
+  .vis-seq-avatar {
+    width: 34px; height: 34px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--accent2), var(--accent));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 11px; font-weight: 800; color: #fff;
+    flex-shrink: 0;
+  }
+
+  .vis-seq-name { font-size: 13px; font-weight: 700; color: var(--text); }
+  .vis-seq-title { font-size: 11px; color: var(--text-dim); margin-top: 1px; }
+
+  .vis-seq-score {
+    margin-left: auto;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 14px; font-weight: 800;
+    color: var(--accent3);
+    background: rgba(0,212,170,0.1);
+    border: 1px solid rgba(0,212,170,0.2);
+    border-radius: 8px;
+    padding: 4px 10px;
+  }
+
+  .vss-steps { display: flex; flex-direction: column; gap: 0; margin-bottom: 16px; }
+
+  .vss-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 8px 0;
+  }
+
+  .vis-seq-icon {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .vis-seq-icon.done { background: var(--accent3); color: #000; }
+  .vis-seq-icon.active { background: var(--accent); color: #fff; animation: dotPulse 1.5s ease infinite; }
+  .vis-seq-icon.pending { background: var(--surface); border: 1px solid var(--border2); }
+
+  .vis-seq-line {
+    display: none;
+  }
+
+  .vis-seq-info { flex: 1; }
+  .vss-step-name { font-size: 12.5px; font-weight: 600; color: var(--text); }
+  .vss-step-sub { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+
+  .vis-seq-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .vis-seq-stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .vis-seq-stat-val {
+    display: block;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 18px; font-weight: 800;
+    color: var(--text);
+  }
+
+  .vis-seq-stat-label { font-size: 10px; color: var(--text-dim); margin-top: 2px; display: block; }
+
   /* ---- LUCIDE ICON HELPERS ---- */
   .cap-icon svg, .point-icon svg { display: block; }
   .chat-pill svg { display: inline-block; vertical-align: middle; margin-right: 3px; flex-shrink: 0; }
@@ -2190,7 +2476,7 @@
     <p class="section-desc reveal">Not just another automation. MAX thinks like a senior growth strategist. It works like a machine.</p>
 
     <div class="how-grid">
-      <div class="how-steps">
+      <div class="how-steps" id="howSteps">
         <div class="step active" id="step-1">
           <div class="step-bar"></div>
           <div class="step-num" style="padding-left:16px;">01</div>
@@ -2227,49 +2513,201 @@
 
       <div class="how-visual">
         <div class="visual-card" id="visual-card">
-          <!-- Step 1: ICP Analysis -->
-          <div id="vis-1">
-            <div class="icp-analysis">
-              <div class="icp-header">
-                <h4>ICP Analysis & Market Research — Running</h4>
-                <span class="icp-tag">AI processing</span>
+
+          <!-- VIS 1: ICP Analysis & Market Research -->
+          <div class="vis-panel" id="vis-1">
+            <div class="vis-label">ICP Analysis & Market Research — Running</div>
+            <div class="icp-attributes" style="margin-bottom:14px;">
+              <div class="icp-attr">
+                <div class="attr-label">Industry</div>
+                <div class="attr-value">Digital Agencies, SaaS</div>
               </div>
-              <div class="icp-attributes">
-                <div class="icp-attr">
-                  <div class="attr-label">Industry</div>
-                  <div class="attr-value">Digital Agencies, SaaS</div>
-                </div>
-                <div class="icp-attr">
-                  <div class="attr-label">Company size</div>
-                  <div class="attr-value">20–200 employees</div>
-                </div>
-                <div class="icp-attr">
-                  <div class="attr-label">Growth stage</div>
-                  <div class="attr-value">Series A–B</div>
-                </div>
-                <div class="icp-attr">
-                  <div class="attr-label">Pain point</div>
-                  <div class="attr-value">Inconsistent pipeline</div>
-                </div>
+              <div class="icp-attr">
+                <div class="attr-label">Company size</div>
+                <div class="attr-value">20–200 employees</div>
               </div>
-              <div class="icp-score">
-                <span class="score-label">ICP match confidence</span>
-                <div class="score-bar-wrap"><div class="score-bar" style="--w: 87%"></div></div>
-                <span class="score-val">87%</span>
+              <div class="icp-attr">
+                <div class="attr-label">Growth stage</div>
+                <div class="attr-value">Series A–B</div>
               </div>
-              <div class="icp-score" style="margin-top:-4px">
-                <span class="score-label">Data completeness</span>
-                <div class="score-bar-wrap"><div class="score-bar" style="--w: 93%"></div></div>
-                <span class="score-val">93%</span>
+              <div class="icp-attr">
+                <div class="attr-label">Top pain point</div>
+                <div class="attr-value">Inconsistent pipeline</div>
               </div>
-              <div class="chat-demo">
-                <div class="chat-msg">
-                  <div class="chat-avatar">M</div>
-                  <div class="chat-bubble">I've analyzed your last <strong>127 closed deals</strong> from HubSpot. Your top segment is B2B SaaS companies, 50–150 employees, with a recent funding event. Want me to target this profile first?</div>
-                </div>
+            </div>
+            <div class="icp-score">
+              <span class="score-label">ICP confidence</span>
+              <div class="score-bar-wrap"><div class="score-bar" style="--w:87%"></div></div>
+              <span class="score-val">87%</span>
+            </div>
+            <div class="icp-score" style="margin-top:6px">
+              <span class="score-label">Market coverage</span>
+              <div class="score-bar-wrap"><div class="score-bar" style="--w:93%"></div></div>
+              <span class="score-val">93%</span>
+            </div>
+            <div class="vis-market-row">
+              <div class="vis-market-item">
+                <div class="vis-market-label">Total Addressable</div>
+                <div class="vis-market-val">14,200</div>
+                <div class="vis-market-sub">companies</div>
+              </div>
+              <div class="vis-market-item">
+                <div class="vis-market-label">Serviceable</div>
+                <div class="vis-market-val">3,840</div>
+                <div class="vis-market-sub">matches ICP</div>
+              </div>
+              <div class="vis-market-item">
+                <div class="vis-market-label">Priority targets</div>
+                <div class="vis-market-val">312</div>
+                <div class="vis-market-sub">high-intent now</div>
               </div>
             </div>
           </div>
+
+          <!-- VIS 2: Strategy Deployment -->
+          <div class="vis-panel" id="vis-2" style="display:none">
+            <div class="vis-label">Strategy Deployment — MAX proposing plan</div>
+            <div class="vis-chat-bubble">
+              <div class="vis-chat-av">M</div>
+              <div class="vis-chat-text">Based on your ICP, I'm recommending a 3-channel strategy. Here's my plan — want me to launch it?</div>
+            </div>
+            <div class="vis-strategy-channels">
+              <div class="vis-channel vis-channel-active">
+                <div class="vis-channel-icon" style="background:rgba(79,142,247,0.15);color:var(--accent)">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                </div>
+                <div class="vis-channel-body">
+                  <div class="vis-channel-name">Marketplace Visibility</div>
+                  <div class="vis-channel-desc">Sortlist, GoodFirms, Clutch — optimize listings for top ICP queries</div>
+                </div>
+                <div class="vis-channel-badge" style="background:rgba(0,212,170,0.12);color:var(--accent3)">Ready</div>
+              </div>
+              <div class="vis-channel vis-channel-active">
+                <div class="vis-channel-icon" style="background:rgba(123,97,255,0.15);color:var(--accent2)">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </div>
+                <div class="vis-channel-body">
+                  <div class="vis-channel-name">Outbound Sequences</div>
+                  <div class="vis-channel-desc">3-touch email + LinkedIn for 312 priority targets</div>
+                </div>
+                <div class="vis-channel-badge" style="background:rgba(79,142,247,0.1);color:var(--accent)">Queued</div>
+              </div>
+              <div class="vis-channel">
+                <div class="vis-channel-icon" style="background:rgba(255,155,62,0.12);color:#FF9B3E">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12 C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10"/><circle cx="12" cy="12" r="2"/><path d="m12 12 3-9"/></svg>
+                </div>
+                <div class="vis-channel-body">
+                  <div class="vis-channel-name">Intent Monitoring</div>
+                  <div class="vis-channel-desc">Track funding, job posts, competitor moves 24/7</div>
+                </div>
+                <div class="vis-channel-badge" style="background:rgba(255,155,62,0.1);color:#FF9B3E">Live</div>
+              </div>
+            </div>
+            <div class="vis-action-row">
+              <div class="vis-action-btn vis-action-primary">Launch strategy</div>
+              <div class="vis-action-btn">Adjust plan</div>
+            </div>
+          </div>
+
+          <!-- VIS 3: Intent Signal Monitoring -->
+          <div class="vis-panel" id="vis-3" style="display:none">
+            <div class="vis-label">Intent Radar — Scanning market live</div>
+            <div class="vis-radar-wrap">
+              <div class="vis-radar">
+                <div class="vis-radar-ring r1"></div>
+                <div class="vis-radar-ring r2"></div>
+                <div class="vis-radar-ring r3"></div>
+                <div class="vis-radar-sweep"></div>
+                <div class="vis-radar-center">MAX</div>
+                <div class="vis-radar-dot" style="top:22%;left:58%;" title="Funding"></div>
+                <div class="vis-radar-dot vis-dot-hot" style="top:45%;left:75%;" title="Hot"></div>
+                <div class="vis-radar-dot" style="top:65%;left:40%;" title="Job post"></div>
+                <div class="vis-radar-dot vis-dot-med" style="top:30%;left:28%;" title="Social"></div>
+                <div class="vis-radar-dot vis-dot-hot" style="top:58%;left:62%;" title="Competitor"></div>
+              </div>
+            </div>
+            <div class="vis-signal-list">
+              <div class="vis-signal-row vis-signal-new">
+                <span class="vis-sig-dot" style="background:var(--accent3)"></span>
+                <span class="vis-sig-text"><strong>Komet Agency</strong> raised Series A — €4.2M</span>
+                <span class="vis-sig-time">now</span>
+              </div>
+              <div class="vis-signal-row">
+                <span class="vis-sig-dot" style="background:var(--accent)"></span>
+                <span class="vis-sig-text"><strong>Sarah M.</strong> posted about scaling sales</span>
+                <span class="vis-sig-time">3h</span>
+              </div>
+              <div class="vis-signal-row">
+                <span class="vis-sig-dot" style="background:#FF9B3E"></span>
+                <span class="vis-sig-text"><strong>Nexora</strong> hired 3 new SDRs</span>
+                <span class="vis-sig-time">5h</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- VIS 4: Proactive Outbound Sequence -->
+          <div class="vis-panel" id="vis-4" style="display:none">
+            <div class="vis-label">Outbound Campaign — Running for 312 leads</div>
+            <div class="vis-sequence">
+
+              <div class="vis-seq-contact">
+                <div class="vis-seq-avatar">SL</div>
+                <div>
+                  <div class="vis-seq-name">Sophie Laurent</div>
+                  <div class="vis-seq-title">Head of Growth · Komet Agency</div>
+                </div>
+                <div class="vis-seq-score">94%</div>
+              </div>
+
+              <div class="vss-steps">
+                <div class="vss-step vis-seq-done">
+                  <div class="vis-seq-icon done">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+                  </div>
+                  <div class="vis-seq-line done"></div>
+                  <div class="vis-seq-info">
+                    <div class="vss-step-name">Day 1 — Intro email</div>
+                    <div class="vss-step-sub">Sent · opened 2× · no reply</div>
+                  </div>
+                </div>
+                <div class="vss-step vis-seq-done">
+                  <div class="vis-seq-icon done">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+                  </div>
+                  <div class="vis-seq-line done"></div>
+                  <div class="vis-seq-info">
+                    <div class="vss-step-name">Day 3 — LinkedIn connect</div>
+                    <div class="vss-step-sub">Accepted · profile viewed</div>
+                  </div>
+                </div>
+                <div class="vss-step vis-seq-active">
+                  <div class="vis-seq-icon active">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/></svg>
+                  </div>
+                  <div class="vis-seq-line pending"></div>
+                  <div class="vis-seq-info">
+                    <div class="vss-step-name">Day 6 — Follow-up email</div>
+                    <div class="vss-step-sub" style="color:var(--accent)">Sending now...</div>
+                  </div>
+                </div>
+                <div class="vss-step vis-seq-pending">
+                  <div class="vis-seq-icon pending"></div>
+                  <div class="vis-seq-line pending"></div>
+                  <div class="vis-seq-info">
+                    <div class="vss-step-name">Day 10 — Break-up message</div>
+                    <div class="vss-step-sub">Scheduled</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="vis-seq-stats">
+                <div class="vis-seq-stat"><span class="vis-seq-stat-val">312</span><span class="vis-seq-stat-label">Active</span></div>
+                <div class="vis-seq-stat"><span class="vis-seq-stat-val">38%</span><span class="vis-seq-stat-label">Open rate</span></div>
+                <div class="vis-seq-stat"><span class="vis-seq-stat-val">12</span><span class="vis-seq-stat-label">Replies</span></div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -2825,29 +3263,65 @@
   function sendSugg(el) { sendMessage(el.textContent); }
 
   // ---- STEP CYCLING ----
-  const steps = document.querySelectorAll('.step');
-  let currentStep = 0;
+  (function() {
+    var stepEls = document.querySelectorAll('#howSteps .step');
+    var panelEls = [
+      document.getElementById('vis-1'),
+      document.getElementById('vis-2'),
+      document.getElementById('vis-3'),
+      document.getElementById('vis-4')
+    ];
 
-  function activateStep(idx) {
-    steps.forEach((s, i) => s.classList.toggle('active', i === idx));
-  }
+    var current = 0;
+    var timer = null;
 
-  steps.forEach((step, idx) => {
-    step.addEventListener('click', () => {
-      currentStep = idx;
-      activateStep(idx);
-      clearInterval(stepInterval);
-      stepInterval = setInterval(() => {
-        currentStep = (currentStep + 1) % steps.length;
-        activateStep(currentStep);
+    function showStep(idx) {
+      // Update step active state
+      for (var i = 0; i < stepEls.length; i++) {
+        stepEls[i].classList.toggle('active', i === idx);
+      }
+      // Swap panels
+      for (var j = 0; j < panelEls.length; j++) {
+        var p = panelEls[j];
+        if (!p) continue;
+        if (j === idx) {
+          p.style.display = 'block';
+          p.style.opacity = '0';
+          p.style.transform = 'translateY(8px)';
+          p.style.transition = 'none';
+          // Force reflow then animate
+          void p.offsetHeight;
+          p.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+          p.style.opacity = '1';
+          p.style.transform = 'translateY(0)';
+        } else {
+          p.style.display = 'none';
+        }
+      }
+      current = idx;
+    }
+
+    function startTimer() {
+      clearInterval(timer);
+      timer = setInterval(function() {
+        showStep((current + 1) % panelEls.length);
       }, 4000);
-    });
-  });
+    }
 
-  let stepInterval = setInterval(() => {
-    currentStep = (currentStep + 1) % steps.length;
-    activateStep(currentStep);
-  }, 4000);
+    // Click handlers
+    for (var k = 0; k < stepEls.length; k++) {
+      (function(idx) {
+        stepEls[idx].addEventListener('click', function() {
+          showStep(idx);
+          startTimer();
+        });
+      })(k);
+    }
+
+    // Boot
+    showStep(0);
+    startTimer();
+  })();
 </script>
 </body>
 </html>
