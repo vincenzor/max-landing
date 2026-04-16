@@ -68,13 +68,14 @@
     justify-content: space-between;
     border-bottom: 1px solid transparent;
     transition: all 0.4s ease;
-    backdrop-filter: blur(0px);
+    background: rgba(7,8,10,0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
   }
 
   nav.scrolled {
-    background: rgba(7,8,10,0.85);
+    background: rgba(7,8,10,0.98);
     border-bottom-color: var(--border);
-    backdrop-filter: blur(20px);
   }
 
   .nav-logo {
@@ -662,9 +663,20 @@
     border-radius: 20px;
     padding: 32px;
     min-height: 400px;
-    position: relative;
+    height: 400px;
     overflow: hidden;
+    position: relative;
   }
+
+  .vis-panel {
+    animation: fadeUp 0.4s ease both;
+    position: absolute;
+    inset: 32px;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+
+  .vis-panel::-webkit-scrollbar { display: none; }
 
   .visual-card::before {
     content: '';
@@ -1833,7 +1845,6 @@
   }
 
   /* ---- VISUAL PANELS ---- */
-  .vis-panel { animation: fadeUp 0.4s ease both; }
 
   .vis-label {
     font-size: 11px;
@@ -2215,6 +2226,10 @@
     /* Stats */
     .stats-bar { grid-template-columns: repeat(2, 1fr); }
     .stat-value { font-size: 30px; }
+
+    /* How visual card - fixed height prevents scroll jumps */
+    .visual-card { height: 480px; min-height: 480px; }
+    .vis-panel { inset: 20px; }
 
     /* How it works */
     .how-grid { grid-template-columns: 1fr; gap: 48px; }
